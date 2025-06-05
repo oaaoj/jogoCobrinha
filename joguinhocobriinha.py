@@ -12,7 +12,9 @@ green = (0,128,0)
 red = (255,0,0)
 black = (0,0,0)
 white = (255,255,255)
+
 #tela
+
 d_height = 600
 d_width = 800
 displ_ay = pygame.display.set_mode((d_width,d_width))
@@ -20,14 +22,14 @@ pygame.display.update()
 pygame.display.set_caption('Cobrinha')
 
 snake_sqr = 10 # largura da cobrinha
-snake_move = 30
+snake_move = 20
 
 clock = pygame.time.Clock()
 
 font_type = pygame.font.SysFont(None, 50)
 def message(msg, color):
     messeger = font_type.render(msg,True,color)
-    displ_ay.blit(messeger, [d_width/2, d_width/2])
+    displ_ay.blit(messeger, [d_width/3, d_width/3])
 
 
 def game_loop():
@@ -39,8 +41,8 @@ def game_loop():
     x1_loc = 0
     y1_loc = 0
 
-    food_x = round(random.randrange(0, d_width - snake_sqr)/10.0)
-    food_y = round(random.randrange(0, d_width - snake_sqr)/10.0)
+    food_x = round(random.randrange(0, d_width - snake_sqr)/10.0) * 10.0
+    food_y = round(random.randrange(0, d_width - snake_sqr)/10.0) * 10.0
 
 
     while not game_over:
@@ -85,6 +87,10 @@ def game_loop():
         pygame.draw.rect(displ_ay, red,[food_x,food_y,snake_sqr,snake_sqr])
         pygame.draw.rect(displ_ay, green,[x1,y1,snake_sqr,snake_sqr])
         pygame.display.update()
+
+        if x1 == food_x and y1 == food_y:
+            print("...")
+
         clock.tick(snake_move)
     
     pygame.display.update()
