@@ -18,7 +18,7 @@ blue = (50,153,213)
 #tela
 
 d_height = 600
-d_width = 800
+d_width = 600
 displ_ay = pygame.display.set_mode((d_width,d_width))
 pygame.display.set_caption('Cobrinha')
 
@@ -36,7 +36,7 @@ def cobrinha(snake_sqr, snake_tail):
 
 def message(msg, color):
     messeger = font_type.render(msg,True,color)
-    displ_ay.blit(messeger, [d_width/3, d_width/3])
+    displ_ay.blit(messeger, [d_width/4, d_width/4])
 
 
 def game_loop():
@@ -88,7 +88,9 @@ def game_loop():
                     y1_loc = snake_sqr
                     x1_loc = 0
 
-     
+        if x1 >= d_width or x1 < 0 or y1 >= d_width or y1 < 0:
+            game_close = True
+
 
         x1 += x1_loc
         y1 += y1_loc
